@@ -7,7 +7,7 @@ Actualmente realiza notificacións a
 - Slack (https://vigotechalliance.slack.com, canle #eventos)
 - Telegram (canle de difusión https://t.me/vigotech)
 
-# Instalación
+## Instalación
 
 O máis cómodo é facer uso da receita de Docker Compose [`docker-compose.yaml`](docker-compose.yaml) facendo un
 ```
@@ -20,9 +20,9 @@ E logo facer a instalación das dependencias con composer:
 docker-compose exec php bash composer install
 ```
 
-# Configuración
+## Configuración
 
-## Variables de contorna e entornos locais
+### Variables de contorna e entornos locais
 
 Pódese utilizar as variables de de contorna especificadas no arquivo [`.env.example`](.env.example) 
 
@@ -49,7 +49,7 @@ TELEGRAM_CHAT_ID=@@Vigotechtest
 
 Tamén se pode copiar o ficheiro [`.env.example`](.env.example) a `.env`. No caso de precisar de dúas contornas de execución (por exemplo para probas) pódese  utilizar tamén un arquivo con nome `.env.local` que terá prioridade sobre as variables de entorno e as engadidas no `.env`.
 
-## Outra configuración
+### Outra configuración
 
 O resto da configuración reside en [`services/config.yaml`](services/config.yaml), onde se define o idioma e formato para as datas e os notificadores habilitados:
 
@@ -69,7 +69,7 @@ O resto da configuración reside en [`services/config.yaml`](services/config.yam
       - '@event.notifier.telegram'
 ```
 
-# Execución
+## Execución
 
 Executando a axuda do comando `vigotech:notify` obtemos:
 ```
