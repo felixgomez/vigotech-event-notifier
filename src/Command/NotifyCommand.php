@@ -78,25 +78,25 @@ class NotifyCommand extends Command
                 'month',
                 'M',
                 InputOption::VALUE_NONE,
-                'Notifies the events of current month'
+                'Notifies events for current month'
             )
             ->addOption(
                 'weekly',
                 'w',
                 InputOption::VALUE_NONE,
-                'Notifies the events of next 7 days'
+                'Notifies events for next 7 days'
             )
             ->addOption(
                 'daily',
                 'd',
                 InputOption::VALUE_NONE,
-                'Notifies the today events'
+                'Notifies today\'s events'
             )
             ->addOption(
                 'upcoming',
                 'u',
                 InputOption::VALUE_NONE,
-                'Notifies next events'
+                'Notifies upcoming events'
             )
             ->addOption(
                 'preview',
@@ -105,7 +105,7 @@ class NotifyCommand extends Command
                 'Set preview mode: Push messages to CLI. Don\'t publish anything'
             )
             ->setDescription('Notify users about events via defined notifiers')
-            ->setHelp('Notify users about events via defined notifiers in Dependency Injection Container');
+            ->setHelp('Notify users about events via enabled notifiers (added at config/services.yaml');
     }
 
     /**
@@ -163,7 +163,7 @@ class NotifyCommand extends Command
             }
 
             if ($weekly) {
-                $io->section('Starting weeekly notifications');
+                $io->section('Starting weekly notifications');
                 $weeklyEvents = $events->filterWeek();
                 if (0 === count($weeklyEvents)) {
                     $io->warning('No events to notify!');
