@@ -1,3 +1,4 @@
+.env
 .env.local
 .php_cs.cache
 .idea
