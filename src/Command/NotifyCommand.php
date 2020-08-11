@@ -105,7 +105,7 @@ class NotifyCommand extends Command
                 'Set preview mode: Push messages to CLI. Don\'t publish anything'
             )
             ->setDescription('Notify users about events via defined notifiers')
-            ->setHelp('Notify users about events via enabled notifiers (added at config/services.yaml');
+            ->setHelp('Notify users about events via enabled notifiers (added at config/services.yaml)');
     }
 
     /**
