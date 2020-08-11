@@ -3,6 +3,13 @@
   "license": "MIT",
   "type": "project",
   "description": "Command line utility for fetching Vigotech events and send messages via included notifiers",
+  "authors": [
+    {
+      "name": "Félix Gómez López",
+      "email": "felix.gomez.lopez@gmail.com",
+      "homepage": "https://felixgomez.eu"
+    }
+  ],
   "require": {
     "php": "^7.2.9",
     "ext-intl": "*",
