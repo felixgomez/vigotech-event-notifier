@@ -9,8 +9,7 @@ use Vigotech\Events;
 use Vigotech\Service\DateFormatter;
 
 /**
- * Class EventNotifierSlack
- * @package Vigotech\Service\EventNotifier
+ * Class EventNotifierSlack.
  */
 final class EventNotifierSlack extends Client implements EventNotifierTypable
 {
@@ -37,13 +36,10 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
     private $dateFormatter;
 
     /**
-     * @var boolean
+     * @var bool
      */
     private $show_group_thumbs;
 
-    /**
-     * @return string
-     */
     public function type(): string
     {
         return 'slack';
@@ -51,8 +47,6 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
 
     /**
      * EventNotifierSlack constructor.
-     * @param array $slackConfig
-     * @param DateFormatter $dateFormatter
      */
     public function __construct(array $slackConfig, DateFormatter $dateFormatter)
     {
@@ -66,8 +60,6 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
     }
 
     /**
-     * @param Events $events
-     * @param bool $preview
      * @throws EventNotifierException
      */
     public function notifyWeekly(Events $events, bool $preview): void
@@ -85,9 +77,6 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
         }
     }
 
-    /**
-     * @param Events $events
-     */
     public function notifyDaily(Events $events, bool $preview): void
     {
         $totalEvents = count($events);
@@ -103,17 +92,14 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
         }
     }
 
-    /**
-     * @param Events $events
-     */
     public function notifyUpcoming(Events $events, bool $preview): void
     {
         $totalEvents = count($events);
 
         if ($totalEvents > 0) {
             $pretext = $pretext = (1 === $totalEvents) ?
-                "🚨🚨🚨 Evento que comeza en breve 🚨🚨🚨" :
-                "🚨🚨🚨 Eventos que comezan en breve 🚨🚨🚨";
+                '🚨🚨🚨 Evento que comeza en breve 🚨🚨🚨' :
+                '🚨🚨🚨 Eventos que comezan en breve 🚨🚨🚨';
 
             $payload = $this->composePayload($pretext, $events);
 
@@ -124,7 +110,6 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
     /**
      * @param $pretext
      * @param $events
-     * @return array
      */
     private function composePayload(string $pretext, Events $events): array
     {
@@ -161,7 +146,7 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
 
     /**
      * @param $payload
-     * @param bool $preview
+     *
      * @throws EventNotifierException
      */
     private function publishPayload($payload, bool $preview): void

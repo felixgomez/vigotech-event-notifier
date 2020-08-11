@@ -11,7 +11,7 @@ class EventFetcherException extends \Exception
      */
     private $type;
 
-    public function __construct(string $type, string $message = "", int $code = 0, Throwable $previous = null)
+    public function __construct(string $type, string $message = '', int $code = 0, Throwable $previous = null)
     {
         $this->type = $type;
         parent::__construct($message, $code, $previous);

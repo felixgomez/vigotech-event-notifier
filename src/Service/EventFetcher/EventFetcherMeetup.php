@@ -11,15 +11,11 @@ use Vigotech\Events;
 use Vigotech\Group;
 
 /**
- * Class EventFetcherMeetup
- * @package Vigotech\Service\EventFetcher
+ * Class EventFetcherMeetup.
  */
 final class EventFetcherMeetup extends Client implements EventFetcherTypable
 {
     /**
-     * @param Group $group
-     * @param array $eventType
-     * @return Events
      * @throws \Exception
      */
     public function fetch(Group $group, array $eventType): Events
@@ -50,9 +46,6 @@ final class EventFetcherMeetup extends Client implements EventFetcherTypable
         return $events;
     }
 
-    /**
-     * @return string
-     */
     public function type(): string
     {
         return 'meetup';

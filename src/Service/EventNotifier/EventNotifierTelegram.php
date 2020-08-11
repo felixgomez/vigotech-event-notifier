@@ -10,8 +10,7 @@ use Vigotech\Events;
 use Vigotech\Service\DateFormatter;
 
 /**
- * Class EventNotifierTelegram
- * @package Vigotech\Service\EventNotifier
+ * Class EventNotifierTelegram.
  */
 final class EventNotifierTelegram extends Client implements EventNotifierTypable
 {
@@ -39,8 +38,6 @@ final class EventNotifierTelegram extends Client implements EventNotifierTypable
 
     /**
      * EventNotifierTelegram constructor.
-     * @param array $config
-     * @param DateFormatter $dateFormatter
      */
     public function __construct(array $config, DateFormatter $dateFormatter)
     {
@@ -51,17 +48,12 @@ final class EventNotifierTelegram extends Client implements EventNotifierTypable
         parent::__construct($config);
     }
 
-    /**
-     * @return string
-     */
     public function type(): string
     {
         return 'telegram';
     }
 
     /**
-     * @param Events $events
-     * @param bool $preview
      * @throws EventNotifierException
      */
     public function notifyWeekly(Events $events, bool $preview): void
@@ -90,8 +82,6 @@ final class EventNotifierTelegram extends Client implements EventNotifierTypable
     }
 
     /**
-     * @param Events $events
-     * @param bool $preview
      * @throws EventNotifierException
      */
     public function notifyDaily(Events $events, bool $preview): void
@@ -120,8 +110,6 @@ final class EventNotifierTelegram extends Client implements EventNotifierTypable
     }
 
     /**
-     * @param Events $events
-     * @param bool $preview
      * @throws EventNotifierException
      */
     public function notifyUpcoming(Events $events, bool $preview): void
@@ -130,8 +118,8 @@ final class EventNotifierTelegram extends Client implements EventNotifierTypable
 
         if ($totalEvents > 0) {
             $text = (1 === $totalEvents) ?
-                "🚨🚨🚨 Evento que comeza pronto ⬇️⬇️⬇" :
-                "🚨🚨🚨 Eventos que comezan pronto⬇️⬇️⬇";
+                '🚨🚨🚨 Evento que comeza pronto ⬇️⬇️⬇' :
+                '🚨🚨🚨 Eventos que comezan pronto⬇️⬇️⬇';
 
             $this->publish($text, $preview);
 
@@ -150,8 +138,6 @@ final class EventNotifierTelegram extends Client implements EventNotifierTypable
     }
 
     /**
-     * @param string $text
-     * @param bool $preview
      * @throws EventNotifierException
      */
     private function publish(string $text, bool $preview): void

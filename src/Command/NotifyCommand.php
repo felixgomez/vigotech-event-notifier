@@ -6,10 +6,10 @@ namespace Vigotech\Command;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Vigotech\Service\EventFetcher\EventFetcher;
 use Vigotech\Service\EventFetcher\EventFetcherException;
@@ -19,7 +19,6 @@ use Vigotech\Service\GroupFetcher\GroupFetcher;
 
 class NotifyCommand extends Command
 {
-
     /**
      * @var GroupFetcher
      */
@@ -47,11 +46,6 @@ class NotifyCommand extends Command
 
     /**
      * NotifyCommand constructor.
-     * @param string|null $name
-     * @param GroupFetcher $groupFetcher
-     * @param EventFetcher $eventFetcher
-     * @param EventNotifier $eventNotifier
-     * @param LoggerInterface $logger
      */
     public function __construct(
         string $name = null,
@@ -69,9 +63,9 @@ class NotifyCommand extends Command
     }
 
     /**
-     * Options and configuration for command
+     * Options and configuration for command.
      */
-    public function configure()
+    public function configure(): void
     {
         $this
             ->addOption(
@@ -108,11 +102,6 @@ class NotifyCommand extends Command
             ->setHelp('Notify users about events via enabled notifiers (added at config/services.yaml)');
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return int|void|null
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
@@ -202,13 +191,10 @@ class NotifyCommand extends Command
         }
 
         $io->success('Program completed!');
+
         return 0;
     }
 
-    /**
-     * @param array $options
-     * @return InvalidOptionException|null
-     */
     private function checkValidOptions(array $options): ?InvalidOptionException
     {
         if (!$options['month'] && !$options['weekly'] && !$options['daily'] && !$options['upcoming']) {

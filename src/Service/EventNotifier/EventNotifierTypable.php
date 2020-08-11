@@ -7,8 +7,7 @@ namespace Vigotech\Service\EventNotifier;
 use Vigotech\Events;
 
 /**
- * Interface EventNotifierTypable
- * @package Vigotech\Service\EventNotifier
+ * Interface EventNotifierTypable.
  */
 interface EventNotifierTypable
 {

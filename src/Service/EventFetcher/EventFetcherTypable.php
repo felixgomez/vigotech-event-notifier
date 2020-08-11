@@ -8,8 +8,7 @@ use Vigotech\Events;
 use Vigotech\Group;
 
 /**
- * Interface EventFetcherTypable
- * @package Vigotech\Service\EventFetcher
+ * Interface EventFetcherTypable.
  */
 interface EventFetcherTypable
 {

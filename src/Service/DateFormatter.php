@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Vigotech\Service;
 
-use IntlDateFormatter;
 use DateTimeInterface;
+use IntlDateFormatter;
 
 /**
- * Class DateFormatter
- * @package Vigotech\Service
+ * Class DateFormatter.
  */
 class DateFormatter
 {
-
     /**
      * @var string
      */
@@ -31,7 +29,6 @@ class DateFormatter
 
     /**
      * DateFormatter constructor.
-     * @param array $config
      */
     public function __construct(array $config)
     {
@@ -42,7 +39,6 @@ class DateFormatter
 
     /**
      * @param $date
-     * @return string
      */
     public function format(DateTimeInterface $date): string
     {
@@ -60,7 +56,6 @@ class DateFormatter
 
     /**
      * @param $date
-     * @return string
      */
     public function getHour(DateTimeInterface $date): string
     {

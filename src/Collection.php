@@ -10,8 +10,7 @@ use IteratorAggregate;
 use function Lambdish\Phunctional\filter;
 
 /**
- * Class Collection
- * @package Vigotech
+ * Class Collection.
  */
 abstract class Collection implements Countable, IteratorAggregate
 {
@@ -22,7 +21,6 @@ abstract class Collection implements Countable, IteratorAggregate
 
     /**
      * Collection constructor.
-     * @param array $items
      */
     public function __construct(array $items = [])
     {
@@ -37,18 +35,12 @@ abstract class Collection implements Countable, IteratorAggregate
         return new ArrayIterator($this->getItems());
     }
 
-    /**
-     * @return int
-     */
     public function count(): int
     {
         return count($this->items);
     }
 
-    /**
-     * @return array
-     */
-    public function getItems()
+    public function getItems(): array
     {
         return $this->items;
     }
@@ -63,10 +55,6 @@ abstract class Collection implements Countable, IteratorAggregate
         }
     }
 
-    /**
-     * @param callable $fn
-     * @return array
-     */
     protected function filter(callable $fn): array
     {
         return filter($fn, $this->items);

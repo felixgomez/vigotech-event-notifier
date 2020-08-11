@@ -10,8 +10,7 @@ use Vigotech\Events;
 use Vigotech\Service\DateFormatter;
 
 /**
- * Class EventNotifierTwitter
- * @package Vigotech\Service\EventNotifier
+ * Class EventNotifierTwitter.
  */
 final class EventNotifierTwitter extends Client implements EventNotifierTypable
 {
@@ -23,9 +22,6 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
 
     /**
      * EventNotifierTwitter constructor.
-     * @param array $twitterConfig
-     * @param HandlerStack $handlerStack
-     * @param DateFormatter $dateFormatter
      */
     public function __construct(array $twitterConfig, HandlerStack $handlerStack, DateFormatter $dateFormatter)
     {
@@ -39,18 +35,11 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
         );
     }
 
-    /**
-     * @return string
-     */
     public function type(): string
     {
         return 'twitter';
     }
 
-    /**
-     * @param Events $events
-     * @param bool $preview
-     */
     public function notifyWeekly(Events $events, bool $preview): void
     {
         $totalEvents = count($events);
@@ -65,9 +54,6 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
         }
     }
 
-    /**
-     * @param Events $events
-     */
     public function notifyDaily(Events $events, bool $preview): void
     {
         foreach ($events as $event) {
@@ -89,9 +75,6 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
         }
     }
 
-    /**
-     * @param Events $events
-     */
     public function notifyUpcoming(Events $events, bool $preview): void
     {
         foreach ($events as $event) {
@@ -115,6 +98,7 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
 
     /**
      * @param $twitterUrl
+     *
      * @return bool|string
      */
     private function getAccountFromTwitterUrl(string $twitterUrl): string
@@ -135,14 +119,13 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
     }
 
     /**
-     * @param string $status
-     * @param bool $preview
      * @throws EventNotifierException
      */
     private function publish(string $status, bool $preview): void
     {
         if ($preview) {
             $this->preview($status);
+
             return;
         }
 

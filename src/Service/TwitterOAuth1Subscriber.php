@@ -7,14 +7,12 @@ namespace Vigotech\Service;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 
 /**
- * Class TwitterOAuth1Subscriber
- * @package Vigotech\Service
+ * Class TwitterOAuth1Subscriber.
  */
 final class TwitterOAuth1Subscriber extends Oauth1
 {
     /**
      * TwitterOAuth1Subscriber constructor.
-     * @param array $config
      */
     public function __construct(array $config)
     {

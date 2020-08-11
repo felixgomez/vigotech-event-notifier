@@ -11,8 +11,7 @@ use Vigotech\Events;
 use Vigotech\Group;
 
 /**
- * Class EventFetcherEventbrite
- * @package Vigotech\Service\EventFetcher
+ * Class EventFetcherEventbrite.
  */
 final class EventFetcherEventbrite extends Client implements EventFetcherTypable
 {
@@ -20,7 +19,6 @@ final class EventFetcherEventbrite extends Client implements EventFetcherTypable
 
     /**
      * EventFetcherEventbrite constructor.
-     * @param string $oauth_token
      */
     public function __construct(string $oauth_token)
     {
@@ -29,9 +27,6 @@ final class EventFetcherEventbrite extends Client implements EventFetcherTypable
     }
 
     /**
-     * @param Group $group
-     * @param array $eventType
-     * @return Events
      * @throws \Exception
      */
     public function fetch(Group $group, array $eventType): Events
@@ -74,9 +69,6 @@ final class EventFetcherEventbrite extends Client implements EventFetcherTypable
         return $events;
     }
 
-    /**
-     * @return string
-     */
     public function type(): string
     {
         return 'eventbrite';

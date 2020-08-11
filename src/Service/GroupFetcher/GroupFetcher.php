@@ -9,12 +9,10 @@ use Vigotech\Group;
 use Vigotech\Groups;
 
 /**
- * Class GroupFetcher
- * @package Vigotech\Service\GroupFetcher
+ * Class GroupFetcher.
  */
 final class GroupFetcher extends Client
 {
-
     /**
      * @var string
      */
@@ -22,6 +20,7 @@ final class GroupFetcher extends Client
 
     /**
      * GroupFetcher constructor.
+     *
      * @param $groupsUrl
      */
     public function __construct($groupsUrl)
@@ -30,9 +29,6 @@ final class GroupFetcher extends Client
         $this->groupsUrl = $groupsUrl;
     }
 
-    /**
-     * @return Groups
-     */
     public function getGroups(): Groups
     {
         $response = $this->get($this->groupsUrl);
@@ -43,11 +39,11 @@ final class GroupFetcher extends Client
 
         $group = new Group();
         $group
-            ->setName($groups['name'] ?? $groups['name'])
-            ->setLogo($groups['logo'] ?? $groups['logo'])
-            ->setLinks($groups['links'] ?? $groups['links'])
-            ->setEventTypes($groups['events'] ?? $groups['events'])
-            ->setVideos(isset($groups['videos']) ? $groups['videos'] : null);
+            ->setName($groups['name'] ?? '')
+            ->setLogo($groups['logo'] ?? '')
+            ->setLinks($groups['links'] ?? '')
+            ->setEventTypes($groups['events'] ?? null)
+            ->setVideos($groups['videos'] ?? null);
 
         $groupCollection->add($group);
 

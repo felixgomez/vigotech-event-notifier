@@ -7,8 +7,7 @@ namespace Vigotech\Service\EventNotifier;
 use Vigotech\Events;
 
 /**
- * Class EventNotifier
- * @package Vigotech\Service\EventNotifier
+ * Class EventNotifier.
  */
 final class EventNotifier
 {
@@ -21,6 +20,7 @@ final class EventNotifier
 
     /**
      * EventNotifier constructor.
+     *
      * @param EventNotifierTypable ...$eventNotifiers
      */
     public function __construct(EventNotifierTypable ...$eventNotifiers)
@@ -32,9 +32,6 @@ final class EventNotifier
         }
     }
 
-    /**
-     * @param Events $events
-     */
     public function notifyWeekly(Events $events): void
     {
         foreach ($this->eventNotifiers as $eventNotifier) {
@@ -42,9 +39,6 @@ final class EventNotifier
         }
     }
 
-    /**
-     * @param Events $events
-     */
     public function notifyDaily(Events $events): void
     {
         foreach ($this->eventNotifiers as $eventNotifier) {
@@ -52,9 +46,6 @@ final class EventNotifier
         }
     }
 
-    /**
-     * @param Events $events
-     */
     public function notifyUpcoming(Events $events): void
     {
         foreach ($this->eventNotifiers as $eventNotifier) {
@@ -62,17 +53,11 @@ final class EventNotifier
         }
     }
 
-    /**
-     * @return bool
-     */
     public function isPreviewMode(): bool
     {
         return $this->previewMode;
     }
 
-    /**
-     * @param bool $previewMode
-     */
     public function setPreviewMode(bool $previewMode): void
     {
         $this->previewMode = $previewMode;

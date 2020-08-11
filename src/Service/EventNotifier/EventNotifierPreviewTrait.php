@@ -8,8 +8,8 @@ trait EventNotifierPreviewTrait
 {
     private function preview(string $payload)
     {
-        print $this->type() . PHP_EOL;
-        print str_repeat('-', strlen($this->type())) . PHP_EOL;
-        print $payload . PHP_EOL . PHP_EOL;
+        echo $this->type().PHP_EOL;
+        echo str_repeat('-', strlen($this->type())).PHP_EOL;
+        echo $payload.PHP_EOL.PHP_EOL;
     }
 }

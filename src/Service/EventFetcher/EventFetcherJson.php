@@ -4,22 +4,18 @@ declare(strict_types=1);
 
 namespace Vigotech\Service\EventFetcher;
 
+use DateTimeImmutable;
 use GuzzleHttp\Client;
 use Vigotech\Event;
 use Vigotech\Events;
 use Vigotech\Group;
-use DateTimeImmutable;
 
 /**
- * Class EventFetcherJson
- * @package Vigotech\Service\EventFetcher
+ * Class EventFetcherJson.
  */
 final class EventFetcherJson extends Client implements EventFetcherTypable
 {
     /**
-     * @param Group $group
-     * @param array $eventType
-     * @return Events
      * @throws \Exception
      */
     public function fetch(Group $group, array $eventType): Events
@@ -47,9 +43,6 @@ final class EventFetcherJson extends Client implements EventFetcherTypable
         return $events;
     }
 
-    /**
-     * @return string
-     */
     public function type(): string
     {
         return 'json';

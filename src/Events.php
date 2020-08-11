@@ -7,19 +7,17 @@ namespace Vigotech;
 use DateTime;
 
 /**
- * Class Events
- * @package Vigotech
+ * Class Events.
  */
 final class Events extends Collection
 {
-
     /**
      * @return Events
      */
     public function filterMonth(): ?Events
     {
         return new Events($this->filter(function (Event $event) {
-            return ($event->getDate()->format('Ym') == (new DateTime())->format('Ym'));
+            return $event->getDate()->format('Ym') == (new DateTime())->format('Ym');
         }));
     }
 
@@ -46,7 +44,7 @@ final class Events extends Collection
     /**
      * @return Events
      */
-    public function filterUpcoming()
+    public function filterUpcoming(): ?Events
     {
         return new Events($this->filter(function ($event) {
             return ($event->getDate() > new DateTime()) && ($event->getDate() <= (new DateTime())->modify('+4 hour'));
