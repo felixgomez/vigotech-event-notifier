@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Dotenv\Dotenv;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+(new Dotenv())->load(file_exists(__DIR__ . '/../.env.local') ? __DIR__ . '/../.env.local' : __DIR__ . '/../.env');
+
+$container = new ContainerBuilder();
+
+$loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../config'));
+$loader->load('services.yaml');
+$container->compile(true);
+
+$application = new Application(
+    $container->getParameter('app.name'),
+    $container->getParameter('app.version')
+);
+
+$application->addCommands([
+    $container->get('notifier_command')
+]);
+
+$application->run();

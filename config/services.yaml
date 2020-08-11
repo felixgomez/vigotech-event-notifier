@@ -1,0 +1,105 @@
+parameters:
+  app.name: 'VigoTech Event Notifier'
+  app.version: '1.0'
+
+  groups_url: '%env(GROUPS_JSON_URL)%'
+
+  eventbrite_oauth_token: '%env(EVENTBRITE_OAUTH_TOKEN)%'
+
+  date:
+    locale: 'gl_ES'
+    format: "eeee, d 'de' MMMM 'ás' HH:mm'h'"
+    timezone: 'Europe/Madrid'
+
+  slack:
+    name: VigoTech
+    icon_url: '%env(SLACK_ICON_URL)%'
+    webhook_url: '%env(SLACK_WEBHOOK_URL)%'
+    show_group_thumbs: true
+
+  twitter:
+    base_uri: 'https://api.twitter.com/1.1/'
+    oauth:
+      consumer_key: '%env(TWITTER_CONSUMER_KEY)%'
+      consumer_secret: '%env(TWITTER_CONSUMER_SECRET)%'
+      token: '%env(TWITTER_TOKEN)%'
+      token_secret: '%env(TWITTER_TOKEN_SECRET)%'
+
+  telegram:
+    token_bot: '%env(TELEGRAM_TOKEN_BOT)%'
+    chat_id: '%env(TELEGRAM_CHAT_ID)%'
+    disable_notification: true
+
+  log_file_path: 'logs/vigotech_notifier.log'
+
+services:
+
+  logger.stream_handler:
+    class: Monolog\Handler\StreamHandler
+    arguments: ['%log_file_path%', Logger::ERROR ]
+
+  logger:
+    class: Monolog\Logger
+    arguments: [ 'vigotech', ['@logger.stream_handler']]
+    public: true
+
+  date.formatter:
+    class: Vigotech\Service\DateFormatter
+    arguments: ['%date%']
+
+  groups_fetcher:
+    class: Vigotech\Service\GroupFetcher\GroupFetcher
+    arguments: ['%groups_url%']
+
+  notifier_command:
+    class: Vigotech\Command\NotifyCommand
+    arguments: [null, '@groups_fetcher', '@event.fetcher', '@event.notifier', '@logger']
+    public: true
+
+  event.fetcher:
+    class: Vigotech\Service\EventFetcher\EventFetcher
+    arguments:
+      - '@event.fetcher.json'
+      - '@event.fetcher.meetup'
+      - '@event.fetcher.eventbrite'
+
+  event.fetcher.json:
+    class: Vigotech\Service\EventFetcher\EventFetcherJson
+
+  event.fetcher.meetup:
+    class: Vigotech\Service\EventFetcher\EventFetcherMeetup
+
+  event.fetcher.eventbrite:
+    class: Vigotech\Service\EventFetcher\EventFetcherEventbrite
+    arguments: ['%eventbrite_oauth_token%']
+
+  event.notifier.slack:
+    class: Vigotech\Service\EventNotifier\EventNotifierSlack
+    arguments: ['%slack%', '@date.formatter']
+
+  twitter.oauth1.subscriber:
+    class: Vigotech\Service\TwitterOAuth1Subscriber
+    arguments: ['%twitter%']
+
+  twitter.handler_stack:
+    class: GuzzleHttp\HandlerStack
+    factory: ['GuzzleHttp\HandlerStack', 'create']
+    calls:
+      - method: push
+        arguments:
+          - '@twitter.oauth1.subscriber'
+
+  event.notifier.twitter:
+    class: Vigotech\Service\EventNotifier\EventNotifierTwitter
+    arguments: ['%twitter%', '@twitter.handler_stack', '@date.formatter']
+
+  event.notifier.telegram:
+    class: Vigotech\Service\EventNotifier\EventNotifierTelegram
+    arguments: ['%telegram%', '@date.formatter']
+
+  event.notifier:
+    class: Vigotech\Service\EventNotifier\EventNotifier
+    arguments:
+      - '@event.notifier.slack'
+      - '@event.notifier.twitter'
+      - '@event.notifier.telegram'

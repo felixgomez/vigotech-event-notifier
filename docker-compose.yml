@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  php_cli:
+    container_name: php_cli
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app:delegated

@@ -1,0 +1,31 @@
+{
+  "name": "vigotech/event-notifier",
+  "license": "MIT",
+  "type": "project",
+  "description": "Command line utility for fetching Vigotech events and send messages via included notifiers",
+  "require": {
+    "php": "^7.2.9",
+    "ext-intl": "*",
+    "ext-json": "*",
+    "symfony/console": "^5",
+    "symfony/config": "^5",
+    "symfony/yaml": "^5",
+    "symfony/dotenv": "^5",
+    "symfony/dependency-injection": "^5",
+    "guzzlehttp/guzzle": "^6",
+    "guzzlehttp/oauth-subscriber": "^0.4.0",
+    "lambdish/phunctional": "^2.0",
+    "monolog/monolog": "^1.24"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Vigotech\\": "src/"
+    }
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^5"
+  }
+}
