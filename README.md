@@ -53,7 +53,7 @@ Tamén se pode copiar o ficheiro [`.env.example`](.env.example) a `.env`. No cas
 
 O resto da configuración reside en [`services/config.yaml`](services/config.yaml), onde se define o idioma e formato para as datas e os notificadores habilitados:
 
-```
+```yaml
   date:
     locale: 'gl_ES'
     format: "eeee, d 'de' MMMM 'ás' HH:mm'h'"
