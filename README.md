@@ -50,7 +50,7 @@ Se non se queren utilizar as variables de contorna pódese copiar o ficheiro [`.
 
 No caso de precisar de dúas contornas de execución (por exemplo para probas) pódese utilizar tamén un arquivo con nome `.env.local` que terá prioridade sobre as variables de entorno e as engadidas no `.env`.
 
-Esta configuración é fácilmente modificable modificando o código en [bin/console#L14](bin/console#L14)
+Esta configuración é fácilmente modificable modificando o código en [`bin/console`](bin/console#L14-L16)
 
 ### Outra configuración
 
