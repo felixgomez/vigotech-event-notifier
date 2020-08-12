@@ -11,7 +11,9 @@ use Symfony\Component\Dotenv\Dotenv;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-(new Dotenv())->load(file_exists(__DIR__.'/../.env.local') ? __DIR__.'/../.env.local' : __DIR__.'/../.env');
+if (file_exists(__DIR__.'/../.env.local') || file_exists(__DIR__.'/../.env')) {
+    (new Dotenv())->load(file_exists(__DIR__.'/../.env.local') ? __DIR__.'/../.env.local' : __DIR__.'/../.env');
+}
 
 $container = new ContainerBuilder();
 
