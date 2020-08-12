@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Vigotech\Service\EventNotifier;
 
 use GuzzleHttp\Client;
-use Vigotech\Events;
+use Vigotech\EventCollection;
 use Vigotech\Service\DateFormatter;
 
 /**
@@ -62,7 +62,7 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
     /**
      * @throws EventNotifierException
      */
-    public function notifyWeekly(Events $events, bool $preview): void
+    public function notifyWeekly(EventCollection $events, bool $preview): void
     {
         $totalEvents = count($events);
 
@@ -77,7 +77,7 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
         }
     }
 
-    public function notifyDaily(Events $events, bool $preview): void
+    public function notifyDaily(EventCollection $events, bool $preview): void
     {
         $totalEvents = count($events);
 
@@ -92,7 +92,7 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
         }
     }
 
-    public function notifyUpcoming(Events $events, bool $preview): void
+    public function notifyUpcoming(EventCollection $events, bool $preview): void
     {
         $totalEvents = count($events);
 
@@ -111,7 +111,7 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
      * @param $pretext
      * @param $events
      */
-    private function composePayload(string $pretext, Events $events): array
+    private function composePayload(string $pretext, EventCollection $events): array
     {
         $attachments = [];
 

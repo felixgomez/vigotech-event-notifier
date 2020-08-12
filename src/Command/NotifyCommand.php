@@ -110,7 +110,8 @@ class NotifyCommand extends Command
             $this->checkValidOptions($input->getOptions());
         } catch (InvalidOptionException $exception) {
             $output->writeln('<error>'.$exception->getMessage().'</error>');
-            die;
+
+            return -1;
         }
 
         $month = $input->getOption('month');

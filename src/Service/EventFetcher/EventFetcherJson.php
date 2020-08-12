@@ -7,7 +7,7 @@ namespace Vigotech\Service\EventFetcher;
 use DateTimeImmutable;
 use GuzzleHttp\Client;
 use Vigotech\Event;
-use Vigotech\Events;
+use Vigotech\EventCollection;
 use Vigotech\Group;
 
 /**
@@ -18,7 +18,7 @@ final class EventFetcherJson extends Client implements EventFetcherTypable
     /**
      * @throws \Exception
      */
-    public function fetch(Group $group, array $eventType): Events
+    public function fetch(Group $group, array $eventType): EventCollection
     {
         try {
             $eventFromJson = json_decode($this->get($eventType['source'])->getBody()->getContents());
@@ -26,7 +26,7 @@ final class EventFetcherJson extends Client implements EventFetcherTypable
             throw new EventFetcherException($this->type(), $exception->getMessage());
         }
 
-        $events = new Events();
+        $events = new EventCollection();
 
         $date = (new DateTimeImmutable())->setTimestamp($eventFromJson->date / 1000);
 

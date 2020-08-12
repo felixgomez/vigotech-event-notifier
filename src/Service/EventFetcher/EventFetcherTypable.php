@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Vigotech\Service\EventFetcher;
 
-use Vigotech\Events;
+use Vigotech\EventCollection;
 use Vigotech\Group;
 
 /**
@@ -12,7 +12,7 @@ use Vigotech\Group;
  */
 interface EventFetcherTypable
 {
-    public function fetch(Group $group, array $eventType): Events;
+    public function fetch(Group $group, array $eventType): EventCollection;
 
     public function type(): string;
 }

@@ -6,7 +6,7 @@ namespace Vigotech\Service\GroupFetcher;
 
 use GuzzleHttp\Client;
 use Vigotech\Group;
-use Vigotech\Groups;
+use Vigotech\GroupCollection;
 
 /**
  * Class GroupFetcher.
@@ -29,13 +29,13 @@ final class GroupFetcher extends Client
         $this->groupsUrl = $groupsUrl;
     }
 
-    public function getGroups(): Groups
+    public function getGroups(): GroupCollection
     {
         $response = $this->get($this->groupsUrl);
 
         $groups = json_decode($response->getBody()->getContents(), true);
 
-        $groupCollection = new Groups();
+        $groupCollection = new GroupCollection();
 
         $group = new Group();
         $group

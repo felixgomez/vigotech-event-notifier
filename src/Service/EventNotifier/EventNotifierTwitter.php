@@ -6,7 +6,7 @@ namespace Vigotech\Service\EventNotifier;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
-use Vigotech\Events;
+use Vigotech\EventCollection;
 use Vigotech\Service\DateFormatter;
 
 /**
@@ -40,7 +40,7 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
         return 'twitter';
     }
 
-    public function notifyWeekly(Events $events, bool $preview): void
+    public function notifyWeekly(EventCollection $events, bool $preview): void
     {
         $totalEvents = count($events);
 
@@ -54,7 +54,7 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
         }
     }
 
-    public function notifyDaily(Events $events, bool $preview): void
+    public function notifyDaily(EventCollection $events, bool $preview): void
     {
         foreach ($events as $event) {
             $twitterAccount = $this->getAccountFromTwitterUrl($event->getGroup()->getLinks()['twitter']);
@@ -75,7 +75,7 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
         }
     }
 
-    public function notifyUpcoming(Events $events, bool $preview): void
+    public function notifyUpcoming(EventCollection $events, bool $preview): void
     {
         foreach ($events as $event) {
             $twitterAccount = $this->getAccountFromTwitterUrl($event->getGroup()->getLinks()['twitter']);

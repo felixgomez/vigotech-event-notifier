@@ -7,7 +7,7 @@ namespace Vigotech\Service\EventFetcher;
 use DateTimeInmutable;
 use GuzzleHttp\Client;
 use Vigotech\Event;
-use Vigotech\Events;
+use Vigotech\EventCollection;
 use Vigotech\Group;
 
 /**
@@ -29,7 +29,7 @@ final class EventFetcherEventbrite extends Client implements EventFetcherTypable
     /**
      * @throws \Exception
      */
-    public function fetch(Group $group, array $eventType): Events
+    public function fetch(Group $group, array $eventType): EventCollection
     {
         try {
             $response = $this->get(
@@ -50,7 +50,7 @@ final class EventFetcherEventbrite extends Client implements EventFetcherTypable
 
         $parsedResponse = json_decode($response->getBody()->getContents(), true);
 
-        $events = new Events();
+        $events = new EventCollection();
 
         foreach ($parsedResponse['events'] as $item) {
             $date = new DateTimeInmutable($item['start']['utc']);

@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Vigotech\Service\EventFetcher;
 
 use function Lambdish\Phunctional\sort;
-use Vigotech\Events;
+use Vigotech\EventCollection;
 use Vigotech\Group;
 
 final class EventFetcher
 {
     /**
-     * @var Events
+     * @var EventCollection
      */
     private $events;
 
@@ -27,7 +27,7 @@ final class EventFetcher
      */
     public function __construct(EventFetcherTypable ...$eventFetchers)
     {
-        $this->events = new Events();
+        $this->events = new EventCollection();
         $this->eventFetchers = [];
 
         foreach ($eventFetchers as $eventFetcher) {
@@ -46,7 +46,7 @@ final class EventFetcher
     /**
      * Add events.
      */
-    private function addEvents(Events $events): void
+    private function addEvents(EventCollection $events): void
     {
         foreach ($events->getItems() as $event) {
             $this->events->add($event);
@@ -56,9 +56,9 @@ final class EventFetcher
     /**
      * Get all events sorted.
      */
-    public function getEvents(): Events
+    public function getEvents(): EventCollection
     {
-        return new Events(sort($this->sortDateAsc(), $this->events));
+        return new EventCollection(sort($this->sortDateAsc(), $this->events));
     }
 
     /**

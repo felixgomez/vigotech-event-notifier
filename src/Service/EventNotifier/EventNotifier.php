@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Vigotech\Service\EventNotifier;
 
-use Vigotech\Events;
+use Vigotech\EventCollection;
 
 /**
  * Class EventNotifier.
@@ -32,21 +32,21 @@ final class EventNotifier
         }
     }
 
-    public function notifyWeekly(Events $events): void
+    public function notifyWeekly(EventCollection $events): void
     {
         foreach ($this->eventNotifiers as $eventNotifier) {
             $eventNotifier->notifyWeekly($events, $this->previewMode);
         }
     }
 
-    public function notifyDaily(Events $events): void
+    public function notifyDaily(EventCollection $events): void
     {
         foreach ($this->eventNotifiers as $eventNotifier) {
             $eventNotifier->notifyDaily($events, $this->previewMode);
         }
     }
 
-    public function notifyUpcoming(Events $events): void
+    public function notifyUpcoming(EventCollection $events): void
     {
         foreach ($this->eventNotifiers as $eventNotifier) {
             $eventNotifier->notifyUpcoming($events, $this->previewMode);

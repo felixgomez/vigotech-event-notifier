@@ -7,46 +7,46 @@ namespace Vigotech;
 use DateTime;
 
 /**
- * Class Events.
+ * Class EventCollection.
  */
-final class Events extends Collection
+final class EventCollection extends Collection
 {
     /**
-     * @return Events
+     * @return EventCollection
      */
-    public function filterMonth(): ?Events
+    public function filterMonth(): ?EventCollection
     {
-        return new Events($this->filter(function (Event $event) {
+        return new EventCollection($this->filter(function (Event $event) {
             return $event->getDate()->format('Ym') == (new DateTime())->format('Ym');
         }));
     }
 
     /**
-     * @return Events
+     * @return EventCollection
      */
-    public function filterWeek(): ?Events
+    public function filterWeek(): ?EventCollection
     {
-        return new Events($this->filter(function (Event $event) {
+        return new EventCollection($this->filter(function (Event $event) {
             return ($event->getDate() > new DateTime()) && ($event->getDate() <= (new DateTime())->modify('next sunday midnight -1 sec'));
         }));
     }
 
     /**
-     * @return Events
+     * @return EventCollection
      */
-    public function filterDaily(): ?Events
+    public function filterDaily(): ?EventCollection
     {
-        return new Events($this->filter(function (Event $event) {
+        return new EventCollection($this->filter(function (Event $event) {
             return ($event->getDate() > new DateTime()) && ($event->getDate() <= (new DateTime())->modify('tomorrow midnight -1 sec'));
         }));
     }
 
     /**
-     * @return Events
+     * @return EventCollection
      */
-    public function filterUpcoming(): ?Events
+    public function filterUpcoming(): ?EventCollection
     {
-        return new Events($this->filter(function ($event) {
+        return new EventCollection($this->filter(function ($event) {
             return ($event->getDate() > new DateTime()) && ($event->getDate() <= (new DateTime())->modify('+4 hour'));
         }));
     }

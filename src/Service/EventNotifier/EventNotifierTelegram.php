@@ -6,7 +6,7 @@ namespace Vigotech\Service\EventNotifier;
 
 use Exception;
 use GuzzleHttp\Client;
-use Vigotech\Events;
+use Vigotech\EventCollection;
 use Vigotech\Service\DateFormatter;
 
 /**
@@ -56,7 +56,7 @@ final class EventNotifierTelegram extends Client implements EventNotifierTypable
     /**
      * @throws EventNotifierException
      */
-    public function notifyWeekly(Events $events, bool $preview): void
+    public function notifyWeekly(EventCollection $events, bool $preview): void
     {
         $totalEvents = count($events);
 
@@ -84,7 +84,7 @@ final class EventNotifierTelegram extends Client implements EventNotifierTypable
     /**
      * @throws EventNotifierException
      */
-    public function notifyDaily(Events $events, bool $preview): void
+    public function notifyDaily(EventCollection $events, bool $preview): void
     {
         $totalEvents = count($events);
 
@@ -112,7 +112,7 @@ final class EventNotifierTelegram extends Client implements EventNotifierTypable
     /**
      * @throws EventNotifierException
      */
-    public function notifyUpcoming(Events $events, bool $preview): void
+    public function notifyUpcoming(EventCollection $events, bool $preview): void
     {
         $totalEvents = count($events);
 
