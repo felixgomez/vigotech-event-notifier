@@ -22,9 +22,9 @@ docker-compose exec php bash composer install
 
 ## Configuración
 
-### Variables de contorna e entornos locais
+### Variables de contorna e contornas locais
 
-Pódese utilizar as variables de de contorna especificadas no arquivo [`.env.example`](.env.example) 
+É preciso establecer as variables de contorna especificadas no arquivo [`.env.example`](.env.example) 
 
 ```ini
 GROUPS_JSON_URL=https://vigotech.org/vigotech.json
@@ -46,8 +46,11 @@ TWITTER_TOKEN_SECRET=
 TELEGRAM_TOKEN_BOT=
 TELEGRAM_CHAT_ID=@@Vigotechtest
 ```
+Se non se queren utilizar as variables de contorna pódese copiar o ficheiro [`.env.example`](.env.example) a `.env`, que sobreescribirá os valores das variables de contorna.
 
-Tamén se pode copiar o ficheiro [`.env.example`](.env.example) a `.env`. No caso de precisar de dúas contornas de execución (por exemplo para probas) pódese  utilizar tamén un arquivo con nome `.env.local` que terá prioridade sobre as variables de entorno e as engadidas no `.env`.
+No caso de precisar de dúas contornas de execución (por exemplo para probas) pódese utilizar tamén un arquivo con nome `.env.local` que terá prioridade sobre as variables de entorno e as engadidas no `.env`.
+
+Esta configuración é fácilmente modificable modificando o código en [bin/console#L14](bin/console#L14)
 
 ### Outra configuración
 
