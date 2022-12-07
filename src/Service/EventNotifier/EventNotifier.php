@@ -11,18 +11,10 @@ use Vigotech\EventCollection;
  */
 final class EventNotifier
 {
-    private $previewMode = false;
+    private bool $previewMode = false;
 
-    /**
-     * @var array
-     */
-    private $eventNotifiers;
+    private array $eventNotifiers;
 
-    /**
-     * EventNotifier constructor.
-     *
-     * @param EventNotifierTypable ...$eventNotifiers
-     */
     public function __construct(EventNotifierTypable ...$eventNotifiers)
     {
         $this->eventNotifiers = [];

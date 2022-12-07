@@ -9,22 +9,17 @@ use GuzzleHttp\HandlerStack;
 use Vigotech\EventCollection;
 use Vigotech\Service\DateFormatter;
 
-/**
- * Class EventNotifierTwitter.
- */
 final class EventNotifierTwitter extends Client implements EventNotifierTypable
 {
     use EventNotifierPreviewTrait;
-    /**
-     * @var DateFormatter
-     */
-    private $dateFormatter;
 
-    /**
-     * EventNotifierTwitter constructor.
-     */
-    public function __construct(array $twitterConfig, HandlerStack $handlerStack, DateFormatter $dateFormatter)
-    {
+    private DateFormatter $dateFormatter;
+
+    public function __construct(
+        array $twitterConfig,
+        HandlerStack $handlerStack,
+        DateFormatter $dateFormatter
+    ) {
         $this->dateFormatter = $dateFormatter;
 
         parent::__construct(
@@ -96,11 +91,6 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
         }
     }
 
-    /**
-     * @param $twitterUrl
-     *
-     * @return bool|string
-     */
     private function getAccountFromTwitterUrl(string $twitterUrl): string
     {
         $result = preg_match(
@@ -118,9 +108,6 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
         }
     }
 
-    /**
-     * @throws EventNotifierException
-     */
     private function publish(string $status, bool $preview): void
     {
         if ($preview) {
@@ -140,7 +127,7 @@ final class EventNotifierTwitter extends Client implements EventNotifierTypable
                 ]
             );
         } catch (\Exception $e) {
-            throw new EventNotifierException($this->type, $e->getMessage());
+            throw new EventNotifierException($this->type(), $e->getMessage());
         }
     }
 }

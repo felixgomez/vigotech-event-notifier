@@ -7,6 +7,7 @@ namespace Vigotech;
 use ArrayIterator;
 use Countable;
 use IteratorAggregate;
+
 use function Lambdish\Phunctional\filter;
 
 /**

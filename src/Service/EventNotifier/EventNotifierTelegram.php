@@ -9,36 +9,18 @@ use GuzzleHttp\Client;
 use Vigotech\EventCollection;
 use Vigotech\Service\DateFormatter;
 
-/**
- * Class EventNotifierTelegram.
- */
 final class EventNotifierTelegram extends Client implements EventNotifierTypable
 {
     use EventNotifierPreviewTrait;
 
-    /**
-     * @var string
-     */
-    private $chat_id;
+    private string $chat_id;
 
-    /**
-     * @var string
-     */
-    private $token;
+    private string $token;
 
-    /**
-     * @var DateFormatter
-     */
-    private $dateFormatter;
+    private DateFormatter $dateFormatter;
 
-    /**
-     * @var bool
-     */
-    private $disableNotification;
+    private bool $disableNotification;
 
-    /**
-     * EventNotifierTelegram constructor.
-     */
     public function __construct(array $config, DateFormatter $dateFormatter)
     {
         $this->chat_id = $config['chat_id'];
@@ -109,9 +91,6 @@ final class EventNotifierTelegram extends Client implements EventNotifierTypable
         }
     }
 
-    /**
-     * @throws EventNotifierException
-     */
     public function notifyUpcoming(EventCollection $events, bool $preview): void
     {
         $totalEvents = count($events);
@@ -137,9 +116,6 @@ final class EventNotifierTelegram extends Client implements EventNotifierTypable
         }
     }
 
-    /**
-     * @throws EventNotifierException
-     */
     private function publish(string $text, bool $preview): void
     {
         if ($preview) {

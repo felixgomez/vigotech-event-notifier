@@ -10,14 +10,8 @@ use Vigotech\Event;
 use Vigotech\EventCollection;
 use Vigotech\Group;
 
-/**
- * Class EventFetcherJson.
- */
 final class EventFetcherJson extends Client implements EventFetcherTypable
 {
-    /**
-     * @throws \Exception
-     */
     public function fetch(Group $group, array $eventType): EventCollection
     {
         try {

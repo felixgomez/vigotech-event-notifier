@@ -8,37 +8,20 @@ use GuzzleHttp\Client;
 use Vigotech\EventCollection;
 use Vigotech\Service\DateFormatter;
 
-/**
- * Class EventNotifierSlack.
- */
 final class EventNotifierSlack extends Client implements EventNotifierTypable
 {
     use EventNotifierPreviewTrait;
 
-    /**
-     * @var string
-     */
-    private $webhook_url;
+    private string $webhook_url;
 
-    /**
-     * @var string
-     */
-    private $name;
 
-    /**
-     * @var string
-     */
-    private $icon_url;
+    private string $name;
 
-    /**
-     * @var DateFormatter
-     */
-    private $dateFormatter;
+    private string $icon_url;
 
-    /**
-     * @var bool
-     */
-    private $show_group_thumbs;
+    private DateFormatter $dateFormatter;
+
+    private bool $show_group_thumbs;
 
     public function type(): string
     {
@@ -48,20 +31,19 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
     /**
      * EventNotifierSlack constructor.
      */
-    public function __construct(array $slackConfig, DateFormatter $dateFormatter)
-    {
-        $this->webhook_url = $slackConfig['webhook_url'];
-        $this->name = $slackConfig['name'];
-        $this->icon_url = strtr($slackConfig['icon_url'], [' ' => '%20']);
-        $this->dateFormatter = $dateFormatter;
+    public function __construct(
+        array $slackConfig,
+        DateFormatter $dateFormatter
+    ) {
+        $this->webhook_url       = $slackConfig['webhook_url'];
+        $this->name              = $slackConfig['name'];
+        $this->icon_url          = strtr($slackConfig['icon_url'], [' ' => '%20']);
+        $this->dateFormatter     = $dateFormatter;
         $this->show_group_thumbs = $slackConfig['show_group_thumbs'];
 
         parent::__construct();
     }
 
-    /**
-     * @throws EventNotifierException
-     */
     public function notifyWeekly(EventCollection $events, bool $preview): void
     {
         $totalEvents = count($events);
@@ -107,10 +89,6 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
         }
     }
 
-    /**
-     * @param $pretext
-     * @param $events
-     */
     private function composePayload(string $pretext, EventCollection $events): array
     {
         $attachments = [];
@@ -144,12 +122,7 @@ final class EventNotifierSlack extends Client implements EventNotifierTypable
         return $payload;
     }
 
-    /**
-     * @param $payload
-     *
-     * @throws EventNotifierException
-     */
-    private function publishPayload($payload, bool $preview): void
+    private function publishPayload(array $payload, bool $preview): void
     {
         if ($preview) {
             $this->preview($payload['text']);

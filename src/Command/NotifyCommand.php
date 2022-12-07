@@ -19,52 +19,30 @@ use Vigotech\Service\GroupFetcher\GroupFetcher;
 
 class NotifyCommand extends Command
 {
-    /**
-     * @var GroupFetcher
-     */
-    private $groupsFetcher;
+    private GroupFetcher $groupsFetcher;
 
-    /**
-     * @var EventFetcher
-     */
-    private $eventFetcher;
+    private EventFetcher $eventFetcher;
 
-    /**
-     * @var EventNotifier
-     */
-    private $eventNotifier;
+    private EventNotifier $eventNotifier;
 
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
+    private LoggerInterface $logger;
 
-    /**
-     * @var string
-     */
     protected static $defaultName = 'vigotech:notify';
 
-    /**
-     * NotifyCommand constructor.
-     */
     public function __construct(
-        string $name = null,
         GroupFetcher $groupFetcher,
         EventFetcher $eventFetcher,
         EventNotifier $eventNotifier,
         LoggerInterface $logger
     ) {
         $this->groupsFetcher = $groupFetcher;
-        $this->eventFetcher = $eventFetcher;
+        $this->eventFetcher  = $eventFetcher;
         $this->eventNotifier = $eventNotifier;
-        $this->logger = $logger;
+        $this->logger        = $logger;
 
-        parent::__construct($name);
+        parent::__construct();
     }
 
-    /**
-     * Options and configuration for command.
-     */
     public function configure(): void
     {
         $this
@@ -114,9 +92,9 @@ class NotifyCommand extends Command
             return -1;
         }
 
-        $month = $input->getOption('month');
-        $weekly = $input->getOption('weekly');
-        $daily = $input->getOption('daily');
+        $month    = $input->getOption('month');
+        $weekly   = $input->getOption('weekly');
+        $daily    = $input->getOption('daily');
         $upcoming = $input->getOption('upcoming');
 
         $this->eventNotifier->setPreviewMode($input->getOption('preview'));

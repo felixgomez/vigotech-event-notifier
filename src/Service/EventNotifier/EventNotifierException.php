@@ -8,7 +8,7 @@ use Throwable;
 
 class EventNotifierException extends \Exception
 {
-    private $channel;
+    private string $channel;
 
     public function __construct(string $channel, string $message = '', int $code = 0, Throwable $previous = null)
     {

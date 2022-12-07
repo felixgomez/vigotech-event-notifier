@@ -6,9 +6,6 @@ namespace Vigotech\Service\EventNotifier;
 
 use Vigotech\EventCollection;
 
-/**
- * Interface EventNotifierTypable.
- */
 interface EventNotifierTypable
 {
     public function notifyWeekly(EventCollection $events, bool $preview): void;

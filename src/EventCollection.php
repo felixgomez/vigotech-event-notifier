@@ -6,14 +6,8 @@ namespace Vigotech;
 
 use DateTime;
 
-/**
- * Class EventCollection.
- */
 final class EventCollection extends Collection
 {
-    /**
-     * @return EventCollection
-     */
     public function filterMonth(): ?EventCollection
     {
         return new EventCollection($this->filter(function (Event $event) {
@@ -21,9 +15,6 @@ final class EventCollection extends Collection
         }));
     }
 
-    /**
-     * @return EventCollection
-     */
     public function filterWeek(): ?EventCollection
     {
         return new EventCollection($this->filter(function (Event $event) {
@@ -31,9 +22,6 @@ final class EventCollection extends Collection
         }));
     }
 
-    /**
-     * @return EventCollection
-     */
     public function filterDaily(): ?EventCollection
     {
         return new EventCollection($this->filter(function (Event $event) {
@@ -41,9 +29,6 @@ final class EventCollection extends Collection
         }));
     }
 
-    /**
-     * @return EventCollection
-     */
     public function filterUpcoming(): ?EventCollection
     {
         return new EventCollection($this->filter(function ($event) {

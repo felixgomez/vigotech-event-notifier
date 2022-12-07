@@ -6,35 +6,17 @@ namespace Vigotech;
 
 use DateTimeImmutable;
 
-/**
- * Class Event.
- */
 final class Event
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var DateTimeImmutable
-     */
-    private $date;
+    private DateTimeImmutable $date;
 
-    /**
-     * @var string
-     */
-    private $link;
+    private string $link;
 
-    /**
-     * @var Group
-     */
-    private $group;
+    private Group $group;
 
-    /**
-     * @var string
-     */
-    private $type;
+    private string $type;
 
     public function getName(): string
     {
@@ -72,10 +54,7 @@ final class Event
         return $this;
     }
 
-    /**
-     * @return Group
-     */
-    public function getGroup()
+    public function getGroup(): Group
     {
         return $this->group;
     }
@@ -92,12 +71,7 @@ final class Event
         return $this->type;
     }
 
-    /**
-     * @param mixed $type
-     *
-     * @return Event
-     */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
 

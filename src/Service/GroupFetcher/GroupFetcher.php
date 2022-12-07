@@ -8,22 +8,11 @@ use GuzzleHttp\Client;
 use Vigotech\Group;
 use Vigotech\GroupCollection;
 
-/**
- * Class GroupFetcher.
- */
 final class GroupFetcher extends Client
 {
-    /**
-     * @var string
-     */
-    private $groupsUrl;
+    private string $groupsUrl;
 
-    /**
-     * GroupFetcher constructor.
-     *
-     * @param $groupsUrl
-     */
-    public function __construct($groupsUrl)
+    public function __construct(string $groupsUrl)
     {
         parent::__construct([]);
         $this->groupsUrl = $groupsUrl;

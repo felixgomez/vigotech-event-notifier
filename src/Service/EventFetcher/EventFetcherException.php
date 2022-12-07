@@ -6,10 +6,7 @@ use Throwable;
 
 class EventFetcherException extends \Exception
 {
-    /**
-     * @var string
-     */
-    private $type;
+    private string $type;
 
     public function __construct(string $type, string $message = '', int $code = 0, Throwable $previous = null)
     {
@@ -20,7 +17,7 @@ class EventFetcherException extends \Exception
     /**
      * @return mixed
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -28,7 +25,7 @@ class EventFetcherException extends \Exception
     /**
      * @param mixed $type
      */
-    public function setType($type): void
+    public function setType(string $type): void
     {
         $this->type = $type;
     }
